@@ -81,6 +81,7 @@ $(function(){
 			setup_examples: function(){
 				this.create_window_api_examples();
 				this.create_text_api_examples();
+				this.create_data_api_examples();
 				this.create_number_api_examples();
 				this.create_date_api_examples();
 			},
@@ -342,6 +343,148 @@ $(function(){
 				this.apply_handlers(buttons, text_buttons);
 
 				$("#content").append(text_buttons);
+			},
+
+			create_data_api_examples: function() {
+			  var self        = this,
+			    data_buttons  = this.container.clone();
+
+			  data_buttons.find('.title').html('pb.data <a href="http://proboards.com/developer/js/class/pb#data">' + this.link_image + '</a>');
+
+			  var buttons = [
+
+			  	{
+			  		id: 'user_group_ids',
+			  		title: 'User Group IDs',
+			  		link: 'data',
+			  		listeners: {
+
+			  			click: function () {
+			  				self.log(pb.data('user').group_ids,
+			  					'An array of IDs of the groups the user belongs to.');
+			  			}
+
+			  		},
+
+			  		source: function () {
+			  			return "pb.data('user').group_ids;";
+			  		}
+			  	},
+
+			  	{
+			  		id: 'user_groups',
+			  		title: 'User Groups',
+			  		link: 'data',
+			  		listeners: {
+
+			  			click: function () {
+			  				self.log(JSON.stringify(pb.data('user').groups),
+			  					'An object containing all groups (by name and ID) the user belongs to.');
+			  			}
+
+			  		},
+
+			  		source: function () {
+			  			return "pb.data('user').groups;";
+			  		}
+			  	},
+
+			  	{
+			  		id: 'user_id',
+			  		title: 'User ID',
+			  		link: 'data',
+			  		listeners: {
+
+			  			click: function () {
+			  				self.log(pb.data('user').id);
+			  			}
+
+			  		},
+
+			  		source: function () {
+			  			return "pb.data('user').id;";
+			  		}
+			  	},
+
+			  	{
+			  		id: 'user_is_staff',
+			  		title: 'User Is Staff?',
+			  		link: 'data',
+			  		listeners: {
+
+			  			click: function () {
+			  				self.log(pb.data('user').is_staff,
+			  					'Returns: 1 (true) or 0 (false)');
+			  			}
+
+			  		},
+
+			  		source: function () {
+			  			return "pb.data('user').is_staff;";
+			  		}
+			  	},
+
+			  	{
+			  		id: 'user_name',
+			  		title: 'User Name',
+			  		link: 'data',
+			  		listeners: {
+
+			  			click: function () {
+			  				self.log(pb.data('user').name,
+			  					'Current display name of the user.');
+			  			}
+
+			  		},
+
+			  		source: function () {
+			  			return "pb.data('user').name;";
+			  		}
+			  	},
+
+			    {
+
+			      id: 'route_name',
+			      title: 'Route Name',
+			      link: 'data',
+			      listeners: {
+
+			        click: function () {
+			          self.log(pb.data('route').name);
+			        }
+
+			      },
+
+			      source: function () {
+			        return "pb.data('route').name;";
+			      }
+
+			    },
+
+			    {
+
+			    	id: 'route_params',
+			    	title: 'Route Params',
+			    	link: 'data',
+			    	listeners: {
+
+			    		click: function () {
+			    			self.log(JSON.stringify(pb.data('route').params),
+			          	'Results in an object containing URI parameters (thread_id in a thread, for example).')
+			    		}
+
+			    	},
+
+			    	source: function () {
+			    		return "pb.data('route').params;";
+			    	}
+			    }
+
+			  ];
+
+			  this.apply_handlers(buttons, data_buttons);
+
+			  $('#content').append(data_buttons);
 			},
 
 			create_number_api_examples: function(){
