@@ -90,6 +90,14 @@ $(function(){
 				var console = $("<div id='kitchensink_console'></div>");
 				var console_container = this.container.clone();
 
+				var clear_btn = $("<button id='clear_kitchensink_console'>Clear Console</button>")
+					.css("margin-bottom", "10px")
+					.click (function () {
+						$("#kitchensink_console").empty();
+					});
+
+				console_container.find(".body").append(clear_btn);
+
 				console_container.find(".title").html("Console");
 				console_container.find(".body").append(console).css({
 
